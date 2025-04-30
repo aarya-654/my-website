@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter for My Boyfriend ❤</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+        
+        body {
+            font-family: 'Dancing Script', cursive;
+            background-color: #ffe4e1;
+            text-align: center;
+            padding: 50px;
+            animation: fadeIn 2s ease-in;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+            animation: popUp 1.5s ease-in-out;
+            position: relative;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background: #ff69b4;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+        button:hover {
+            background: #ff1493;
+        }
+        p {
+            font-size: 20px;
+            color: #d63384;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes popUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes heartFloat {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-50px) scale(1.2); opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: heartFloat 3s linear infinite;
+        }
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💕 Something for you 💕</h1>
+        <p id="loveLetter"></p>
+        <button onclick="generateLetter()">Love Letter</button>
+        <audio id="bgMusic" loop>
+            <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="playMusic()">Play Romantic Music 🎶</button>
+    </div>
+    
+    <script>
+        function generateLetter() {
+            const letters = [
+                `My Tom,
+
+                Your smile, your eyes, your laugh, your presence—just everything about you, I Love You. 
+                In my eyes, you are totally perfect. You are my world, my life; you mean a lot to me. 
+                I will never let you go because I know my life won't be complete if you are not in it. You are my one and only.
+
+                I can't promise to fix all your problems, but I promise that you will never deal with them alone. 
+                I love you with all my heart—just remember that always!!
+
+                Always & Forever,
+
+                Your Love 💕`,
+                
+                `My Khadusman,
+
+                Every moment with you is like a beautiful dream come true. You bring joy to my life in ways I never imagined. 
+                Your love is my guiding light, my strength, and my happiness. I am so grateful for you every single day.
+
+                No matter where life takes us, I promise to stand by your side, to love you endlessly, and to cherish every moment we share.
+
+                Forever and always,
+
+                Your Love 💕`,
+                
+                `My Panda,
+
+                Ye teri ankhen itni khubsurat hai inme kho Jane ko jee chahta hai.
+                Jab bhi teri ankhon mein khud ko dekhti hu mera ishq or bhi gahara ho jata hai.
+                Jis tarah teri ankhen mujhe teri mohobbat bayan karti hai, jis tarah meri khamoshi me bhi dhero kahaniya pdha leti hai.
+                Sach kahu mujhe tujhse se bhi jada khubsurat Teri ye ankhe lagti hai.
+
+                With all my love,
+
+                Your Forever 💕`,
+                
+                `मारवाड़ी प्रेम पत्र,
+
+                Banna,
+
+                थांरो साथ मिल्यो पाछे म्हारो जीवन पूरो लागे। थांरी हर एक मुस्कान, थांरी बोली, थांरो स्पर्श, सब्ब प्यार रो अहसास करावे। 
+                थांरी यादां म्हारे दिल ने रोज़-रोज़ खुशी देवे।
+
+                कदी भी थांने कोई तकलीफ होवे, तो याद राखजो, म्हूं हमेशा थांरे साथ हो।
+
+                थांरी हर खुशी म्हारे दिल री खुशी से जुड़ी है। थाने धन्यवाद, थां म्हारी जिंदगी रो सबसे सुन्दर हिस्सा हो।
+
+                प्रेम और सम्मान सहित,
+
+                थांरो सच्चो प्रेमी 💕`
+            ];
+            
+            const currentLetter = document.getElementById('loveLetter').innerHTML;
+            let nextLetter;
+            if (currentLetter.includes("My Tom")) {
+                nextLetter = letters[1];
+            } else if (currentLetter.includes("My Khadusman")) {
+                nextLetter = letters[2];
+            } else if (currentLetter.includes("My Panda")) {
+                nextLetter = letters[3];
+            } else {
+                nextLetter = letters[0];
+            }
+            
+            document.getElementById('loveLetter').innerHTML = nextLetter.replace(/\n/g, "<br>");
+            createHearts();
+        }
+
+        function playMusic() {
+            document.getElementById('bgMusic').play();
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤";
+                document.body.appendChild(heart);
+
+                let x = Math.random() * window.innerWidth;
+                let duration = Math.random() * 3 + 2;
+                let size = Math.random() * 20 + 10;
+
+                heart.style.left = `${x}px`;
+                heart.style.animationDuration = `${duration}s`;
+                heart.style.fontSize = `${size}px`;
+
+                setTimeout(() => heart.remove(), duration * 1000);
+            }
+        }
+    </script>
+</body>
+</html>
