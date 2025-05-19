@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will you be my Boyfriend?</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      background: #f3e5f5;
+      margin: 0;
+      padding: 90px;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      position: relative;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      padding: 150px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      height: 60px;
+      position: relative;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .yes {
+      background-color: #4CAF50;
+      color: white;
+      margin-right: 10px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .no {
+      background-color: #f44336;
+      color: white;
+      position: absolute;
+      top: 0;
+      right: 0;
+      animation: float 2s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    #hearts {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      color: #ff1a75;
+      animation: rise 5s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes rise {
+      0%   { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      30%  { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    /* New page transition */
+    .second-page {
+      display: none;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="hearts"></div>
+
+  <div class="container" id="firstPage">
+    <h1>Will you be my Boyfriend?</h1>
+    <img src="C:\Users\aarya\OneDrive\Desktop\photos\bubu-dudu-sseeyall.gif" class="image">
+    <p>
+      Ever since you appeared, I've liked you for many years, and I hope from now on you’ll say my name to warm dreams 💗<br><br>
+      You're the one I want to kiss even if I have to pull out the oxygen tank!
+    </p>
+
+    <div class="buttons">
+      <button class="yes" id="yesBtn">Yes ✅</button>
+      <button class="no" id="noBtn">No ❌</button>
+    </div>
+  </div>
+
+  <div class="second-page" id="secondPage">
+    <img src="C:\Users\aarya\OneDrive\Desktop\photos\love.gif" alt="Cute Hug" class="image">
+    <p>
+      You're the one I want to kiss even if I have to pull out the oxygen tank!<br>
+      You're the person I want to hug even after running 8000 meters 💞<br>
+      You're the secret I wouldn't dare reveal even after punishing myself with three drinks 🍷<br>
+      You're the passion I wouldn't let go of, even if I had to brave fire and water 🔥💧<br>
+      You're the one I'd still reply to even when my battery is at 1% 📱<br>
+      You're the dream I never want to wake up from 🌈<br>
+    </p>
+    <img src="C:\Users\aarya\OneDrive\Desktop\photos\nugzi-nugzisjemi.gif" alt="Happy Bear Couple" class="image">
+    <p><strong>That's great! Haha~ ❤️</strong></p>
+  </div>
+
+  <audio id="romanticMusic" src="romantic.mp3" preload="auto" loop autoplay></audio>
+  <audio id="popSound" src="pop.mp3" preload="auto"></audio>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn  = document.getElementById('noBtn');
+    const hearts = document.getElementById('hearts');
+    const popSound = document.getElementById('popSound');
+    const firstPage = document.getElementById('firstPage');
+    const secondPage = document.getElementById('secondPage');
+
+    // continuous hearts
+    function emitHeart() {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = '❤️';
+      h.style.left = Math.random() * 100 + 'vw';
+      hearts.appendChild(h);
+      h.addEventListener('animationend', () => h.remove());
+    }
+    setInterval(emitHeart, 500);
+
+    // No button: on mouseover, jump anywhere in viewport
+    noBtn.addEventListener('mouseover', () => {
+      const maxX = window.innerWidth  - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      noBtn.style.left = x + 'px';
+      noBtn.style.top  = y + 'px';
+    });
+
+    // Yes button: pop sound + transition to second page
+    yesBtn.addEventListener('click', () => {
+      popSound.currentTime = 0;
+      popSound.play();
+      firstPage.style.display = 'none';  // Hide first page
+      secondPage.style.display = 'block';  // Show second page
+      secondPage.scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
